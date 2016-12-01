@@ -1,0 +1,30 @@
+#!/user/bin/perl -w
+print "Please type the first filename of protein sequence data:";
+$proteinfilename1 = <STDIN>;
+print "Please type the second filename of protein sequence data:";
+$proteinfilename2 = <STDIN>;
+chomp $proteinfilename1;
+chomp $proteinfilename2;
+unless (open(PROTEINFILEONE,$proteinfilename1)){
+print "Could not find it";
+exit;
+}
+unless (open(PROTEINFILESED,$proteinfilename2)){
+print "Could not find it";
+exit;
+}
+@protein1 = <PROTEINFILEONE>;
+@protein2 = <PROTEINFILESED>;
+close PROTEINFILEONE;
+close PROTEINFILESED;
+$protein1 = join('',@protein1);
+$protein2 = join('',@protein2);
+$protein1 =~ s/\s//g;
+$protein2 =~ s/\s//g;
+$protein = $protein1 . $protein2;
+print "$protein\n";
+$protein1 =~ s/./ /g;
+$protein = $protein1 . $protein2;
+print "$protein\n";
+exit;
+
